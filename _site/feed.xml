@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Smruti Amarjyoti</title>
+    <description>A reflection of my thoughts and experiments on the fascinating realm of Robotics and Artificial Intelligence.
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 05 Nov 2017 21:34:35 -0500</pubDate>
+    <lastBuildDate>Sun, 05 Nov 2017 21:34:35 -0500</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Nonlinear Dimensionality Reduction by Locally Linear Embedding</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.robots.ox.ac.uk/~az/lectures/ml/lle.pdf&quot;&gt;Roweis, Saul, 2000&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;ISOMAP and MDS require estimates of pairwise distances between data points. LLE gets around this by “thinking” globally but fitting locally. Essentially, each data point should hypothetically be representable by a locally linear patch. Therefore, LLE seeks $W$ such that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E(W) = \sum_i \| X_i - \sum_j W_{ij} X_j \|^{2}&lt;/script&gt;
+
+&lt;p&gt;is minimized. Hence, a data point should be reconstructed by its neighbors; the problem is solved via least squares. Note that the weights are invariant to affine transformations and translations. Assuming that $W$ should be preserved in a lower dimensional representation of the data, LLE seeks to solve&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Phi (Y) = \sum_i \| Y_i - \sum_j W_{ij} Y_j \|^{2}&lt;/script&gt;
+
+&lt;p&gt;The optimal coordinates $Y$ can be found by solving a sparse $n \times n$ eigenvalue problem.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Because of the simple construction and use of simple linear algebra, LLE has better theoretical properties than other algorithms like autoencoders&lt;/li&gt;
+  &lt;li&gt;It also has less hyperparameters&lt;/li&gt;
+  &lt;li&gt;Doesn’t need to be rerun when new dimensions are added to the embedding space (old ones do not change)&lt;/li&gt;
+  &lt;li&gt;Does LLE work on spheres? It seems like it would run into the same problem if the sphere didn’t have a hole taken out of it&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/general-ml/2017/09/14/LLE.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/general-ml/2017/09/14/LLE.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>general-ML</category>
+        
+      </item>
+    
+      <item>
+        <title>A Global Geometric Framework for Nonlinear Dimensionality Reduction</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.jstor.org/stable/pdf/3081721.pdf&quot;&gt;Tenenbaum, et. al. 2000&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Isomap, seemingly named for “Isometric mapping”, seeks to provide a solution to the problem of non-linear dimensionality reduction. The method is especially suitable for high-dimensional manifolds that exhibit non-Euclidean geometry, such that the Euclidean distance between data points returns distances that are not actually realistic for the underlying low-dimensional manifold. The intuition for this approach lies in the use of the all-pairs shortest path algorithm to improve upon Multi-dimensional scaling. Under general conditions on the density and curvature of the points, a geodesic distance can be estimated between far away points on the high-dimensional manifold via the all-pairs shortest path that converges to the true distance in the limit. Then, similar to MDS, Isomap attempts to find coordinate vectors for a low-dimensional space within which the distances between points are preserved as much as possible. This essentially results in the selection of the largest p eigenvectors of the matrix of estimated distances on the high-dimensional manifold (transformed to inner products). To make the algorithm work, the first step consists of clustering the data points either using k-NN or $\epsilon$-balls. Edges are placed between all points clustered together, to form the graph upon which all-pairs shortest path is run.&lt;/p&gt;
+
+&lt;p&gt;In this paper, the authors present examples of applying Isomap to a dataset of faces, MNIST, and the “swiss roll” dataset. Interestingly, they are able to map the faces dataset to a 3-D space, capturing left-right poses, up-down poses, and variations in ambient lighting. They show that PCA and MDS converge (the residual loss goes to 0) but they are unable to recover the true dimensionality of the low-dimensional manifold. This seems to be troublesome, because if one naively applies PCA to a dataset and the residual loss goes to 0, it appears then that the user of this algorithm will mistakenly believe they have recovered the true low-dimensional manifold. It would be interesting to then run a classifier on this low-dimensional representation produced by PCA, and then check the performance against the same classifier using the low-dimensional representation learned by Isomap. I imagine that the Isomap classifier will have slightly better performance.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 31 Aug 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/general-ml/2017/08/31/ISOMAP.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/general-ml/2017/08/31/ISOMAP.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>general-ML</category>
+        
+      </item>
+    
+      <item>
+        <title>Fa17 Meeting 1</title>
+        <description>
+</description>
+        <pubDate>Thu, 31 Aug 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/ml-meetings/2017/08/31/fa17-meeting-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/08/31/fa17-meeting-1.html</guid>
+        
+        
+        <category>ml-meetings</category>
+        
+      </item>
+    
+      <item>
+        <title>Towards Deep Symbolic Reinforcement Learning</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1609.05518v2&quot;&gt;Garnelo, et. al., 2017&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;div&gt;
+	&lt;div class=&quot;image-wrapper&quot;&gt;
+	
+	&lt;img src=&quot;/img/symbolic-rl.bmp&quot; alt=&quot;&quot; width=&quot;&quot; height=&quot;&quot; /&gt;
+	
+	&lt;/div&gt;
+	&lt;div&gt;
+	
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It is desirable for an agent to symbolically reason about its environment, in order to expediate the process of learning optimal behaviors. However, “classic” symbolic AI suffers from the &lt;strong&gt;symbol grounding problem&lt;/strong&gt;; symbolic elements have traditionally been hand-crafted, and hence, are brittle. On the other hand, Deep Learning can be used to automatically learn ~optimal “symbols”, upon which a reinforcement learning agent could learn behaviors motivated by these learned symbols. By forcing a Deep RL agent to operate in a symbolic domain, the decisions made by the agent are naturally more interpretable.&lt;/p&gt;
+
+&lt;p&gt;The aspects of AI that this work focuses on are closely related to those proposed in the manifesto written by &lt;a href=&quot;http://pemami4911.github.io/paper-summaries/general-ai/2016/05/13/learning-to-think.html&quot;&gt;Lake et. al.&lt;/a&gt;. There are also nods to &lt;a href=&quot;http://cogs.indiana.edu/people/profile.php?u=dughof&quot;&gt;Douglas Hofstadter’s&lt;/a&gt; work on analogy as being the main driving force behind intelligence, as well as &lt;a href=&quot;http://www.hutter1.net/&quot;&gt;Marcus Hutter’s&lt;/a&gt; Universal Artificial Intelligence work.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Conceptual abstraction - agents can use abstractions to make analogies and hence learn optimal behaviors faster&lt;/li&gt;
+  &lt;li&gt;Compositional structure - probabilistic first-order logic provides the underlying framework for a representation medium that is compositional&lt;/li&gt;
+  &lt;li&gt;Common sense priors - priors from simple object tracking! Persistence, kinematics (constant velocity models), etc.&lt;/li&gt;
+  &lt;li&gt;Causal reasoning - the proposed architecture attempts to discover causal structure in the environment to accelerate learning by explicitly maintaining sets of causal rules&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A Q-learning agent is designed for their toy example. The state space consists of the different interactions between the learned symbolic abstractions of the environment. A tracking process is carried out separately from the agent for keeping track of the different symbolic abstractions.&lt;/p&gt;
+
+&lt;p&gt;Main result: on random toy problem instances, DQN is not able to better than chance… Hypothesis: DQN relies on the fact that you should be able to internally learn a model for $p(s_{t+1}|s_{t},a_{t})$ after going through a lot of examples. When this distribution is non-stationary, it can’t! However, the proposed architecture doesn’t seem to care about this. It instead directly is learning about object interactions.&lt;/p&gt;
+
+&lt;h3 id=&quot;methodology&quot;&gt;Methodology&lt;/h3&gt;
+
+&lt;p&gt;Their environment is a simple B&amp;amp;W grid upon which shapes (O’s, X’s, and +’s) can be randomly positioned.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Low-level symbol generation: Uses a convolutional autoencoder to do simple dimensionality reduction and learn relevant features. Then, they do a form of unsupervised clustering by finding the maximally activated feature corresponding to each pixel, then thresholding these values. Once they have a sparse list of salient pixels, they form a spectrum with the activations across all features, and define a distance metric on the spectra via the sum of squared distances. This allows them to cluster pixels (objects) into certain categories.&lt;/li&gt;
+  &lt;li&gt;Representation building: notions of spatial proximity, type-transitions between frames (including birth and death), neighborhood (number of neighbors), relative distances and positions&lt;/li&gt;
+  &lt;li&gt;Reinforcement Learning: Agent is the ‘+’, separate Q for interactions between different pairs of object types. State space describes different possible relations between two objects types. Seek to learn how to interact via (U, D, L, R) actions.&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 29 Aug 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/reinforcement-learning-theory/2017/08/29/deep-symbolic-rl.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/reinforcement-learning-theory/2017/08/29/deep-symbolic-rl.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>reinforcement-learning-theory</category>
+        
+      </item>
+    
+      <item>
+        <title>Deep Learning via Hessian-Free Optimization</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cs.toronto.edu/~jmartens/docs/Deep_HessianFree.pdf&quot;&gt;James Martens, 2010&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;This paper introduces a fairly complex optimization algorithm for deep nets that uses approximate 2nd-order gradient information&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In Hessian-Free optimization, you can directly approximate a Hessian-vector product $Hv$ with the method of finite-differences; this only costs 1 more gradient evaluation&lt;/li&gt;
+  &lt;li&gt;linear conjugate gradient algorithm allows one to solve for the optimal search direction in $O(N)$ iterations ($N$ is the number of parameters) with only matrix-vector products&lt;/li&gt;
+  &lt;li&gt;Newton’s method is scale invariant, e.g., for a new parameterization $\hat{\theta} = A \theta$ for some invertible matrix $A$, the optimal search direction is now $\hat{p} = A p$ where $p$ is the original optimal search direction. Gradient descent is not (need proof!) - so many bad things about GD, but it’s so easy to implement..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;considerations-when-applying-this-technique&quot;&gt;Considerations when applying this technique&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Need to use an adaptive damping parameters $\lambda$ beause the relative scale of $B = H(\theta)$ is changing and $H(\theta)$ must remain positive semidefinite. Recommended heuristic is given in Section 4.1&lt;/li&gt;
+  &lt;li&gt;Gauss-Newton matrix $G$ can produce better search directions than $H$, see &lt;a href=&quot;http://andrew.gibiansky.com/blog/machine-learning/gauss-newton-matrix/&quot;&gt;this blog post&lt;/a&gt; for a summary&lt;/li&gt;
+  &lt;li&gt;Compute gradient on entire dataset, but use minibatches to compute Hessian-vector products. SGD requires 10’s of thousands of iterations versus ~200 for HF&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 07 Aug 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/deep-learning/2017/08/07/deep-hessian-free.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/deep-learning/2017/08/07/deep-hessian-free.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>deep-learning</category>
+        
+      </item>
+    
+      <item>
+        <title>Sum17 Meeting 9</title>
+        <description>
+</description>
+        <pubDate>Thu, 03 Aug 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/ml-meetings/2017/08/03/sum17-meeting-9.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/08/03/sum17-meeting-9.html</guid>
+        
+        
+        <category>ml-meetings</category>
+        
+      </item>
+    
+      <item>
+        <title>Sum17 Meeting 8</title>
+        <description>
+</description>
+        <pubDate>Thu, 06 Jul 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/ml-meetings/2017/07/06/sum17-meeting-8.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/07/06/sum17-meeting-8.html</guid>
+        
+        
+        <category>ml-meetings</category>
+        
+      </item>
+    
+      <item>
+        <title>Sum17 Meeting 7</title>
+        <description>
+</description>
+        <pubDate>Thu, 29 Jun 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/ml-meetings/2017/06/29/sum17-meeting-7.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/06/29/sum17-meeting-7.html</guid>
+        
+        
+        <category>ml-meetings</category>
+        
+      </item>
+    
+      <item>
+        <title>Sum17 Meeting 6</title>
+        <description>
+</description>
+        <pubDate>Thu, 22 Jun 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/ml-meetings/2017/06/22/sum17-meeting-6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/06/22/sum17-meeting-6.html</guid>
+        
+        
+        <category>ml-meetings</category>
+        
+      </item>
+    
+      <item>
+        <title>The Markov Chain Monte Carlo Revolution</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ams.org/journals/bull/2009-46-02/S0273-0979-08-01238-X/home.html&quot;&gt;Persi Diaconis, 2009&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-fundamental-theorem-of-markov-chains&quot;&gt;The Fundamental Theorem of Markov Chains&lt;/h3&gt;
+
+&lt;p&gt;From any starting state $x$, the $n^{th}$ step of a run of the MC has chance close to $\pi (y)$ of being at $y$ if $n$ is large. The MC must be connected, i.e., in the limit, the kernel $K$/proposal distribution/Markov transition matrix has no zero-probability transitions.&lt;/p&gt;
+
+&lt;h2 id=&quot;metropolis-algorithm&quot;&gt;Metropolis Algorithm&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Based on “proposal” and “acceptance”&lt;/li&gt;
+  &lt;li&gt;The acceptance ratio is to ensure that the fraction of time spent in each state is proportional to $\pi(x)$ for $x \in \chi$&lt;/li&gt;
+  &lt;li&gt;In this algorithm, the normalization constants of the stationary distributions cancel out!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In Equation 2.3, if the acceptance ratio is $&amp;lt; 1$, you are multiplying the probabilities $J(x,y)$ and $A(x,y)$ together. This generates the success probability $J(x,y)A(x,y)$ for transitioning x -&amp;gt; y. You want to accept transitions that move to states that are reversible (and hence move you closer to the true stationary distribution), and stay away from states that are not. The algorithm hence allows the Markov Chain to stay in the same place with some probability if the acceptance ratio is low.&lt;/p&gt;
+
+&lt;p&gt;This algorithm produces a reversible Markov chain:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\pi(x) K(x,y) = \pi(y) K(y, x).&lt;/script&gt;
+
+&lt;p&gt;Since $\pi K = \pi$ (the stationary distribution is unchanged by the operation of the kernel $K$), $\pi$ is a left eigenvector of $K$ with eigenvalue 1. The basic result on convergence to the stationary distribution can be found by taking the spectral decomposition of $K$.&lt;/p&gt;
+
+&lt;h2 id=&quot;gibbs-sampler&quot;&gt;Gibbs sampler&lt;/h2&gt;
+
+&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.nehalemlabs.net/prototype/blog/2014/02/24/an-introduction-to-the-metropolis-method-with-python/&quot;&gt;Here’s a neat example of the Metropolis Hastings algorithm for sampling from a boltzmann distribution&lt;/a&gt;. Remember- low-energy states have high boltzmann probability!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Jun 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/general-ml/2017/06/21/mcmc-rev.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/general-ml/2017/06/21/mcmc-rev.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>general-ML</category>
+        
+      </item>
+    
+  </channel>
+</rss>

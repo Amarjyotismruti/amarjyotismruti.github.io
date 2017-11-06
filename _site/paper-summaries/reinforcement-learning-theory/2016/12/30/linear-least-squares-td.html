@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Linear Least-Squares Algorithms for Temporal Difference Learning</title>
+  <meta name="description" content="">
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|Source+Sans+Pro:400,700,200,300|Josefin+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="canonical" href="http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html">
+  <link rel="alternate" type="application/rss+xml" title="Smruti Amarjyoti" href="http://localhost:4000/feed.xml">
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82749305-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  <script src="/js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/js/bower_components/js/js.min.js"></script>
+  <script src="/js/list.js"></script>
+</head>
+
+
+  <body>
+
+    
+<div class="wrapper">
+  <center> <a href="/index.html"><div class="site-title">   Smruti Amarjyoti </div></a></center>
+</div>
+<div class="wrapper site-description">
+<center>  A reflection of my thoughts and experiments on the fascinating realm of Robotics and Artificial Intelligence.
+ </center>
+</div>
+<div class="wrapper">
+  <div class="trigger site-navigation">
+   
+    
+      
+      
+
+      <a class="page-link" href="/blog/">Blog</a>
+      
+      
+          <span class="exclamationMark">/</span>
+      
+
+      
+      
+    
+      
+      
+
+      <a class="page-link" href="/cs-dojo/">CS Dojo</a>
+      
+      
+          <span class="exclamationMark">/</span>
+      
+
+      
+      
+    
+      
+    
+      
+      
+
+      <a class="page-link" href="/">About Me</a>
+      
+      
+          <span class="exclamationMark">/</span>
+      
+
+      
+      
+    
+      
+      
+
+      <a class="page-link" href="/paper-summaries/">Paper Summaries</a>
+      
+      
+          <span class="exclamationMark">/</span>
+      
+
+      
+      
+    
+      
+    
+      
+    
+      
+      
+
+      <a class="page-link" href="/uf-ml/">UF ML Reading Group</a>
+      
+      
+
+      
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline"><a class="post-title-link"  href="/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html">Linear Least-Squares Algorithms for Temporal Difference Learning</a></h1>
+  <center>  <p class="post-meta"><time datetime="2016-12-30T00:00:00-05:00" itemprop="datePublished">Dec 30, 2016</time></p>
+    
+    
+
+    <!-- Sharingbutton Facebook -->
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_blank" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <g>
+            <path d="M18.768,7.465H14.5V5.56c0-0.896,0.594-1.105,1.012-1.105s2.988,0,2.988,0V0.513L14.171,0.5C10.244,0.5,9.5,3.438,9.5,5.32 v2.145h-3v4h3c0,5.212,0,12,0,12h5c0,0,0-6.85,0-12h3.851L18.768,7.465z"/>
+        </g>
+    </svg>
+    </div>
+  </div>
+</a>
+
+<!-- Sharingbutton Twitter -->
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Linear Least-Squares Algorithms for Temporal Difference Learning by @patrickomid &amp;url=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_blank" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <g>
+            <path d="M23.444,4.834c-0.814,0.363-1.5,0.375-2.228,0.016c0.938-0.562,0.981-0.957,1.32-2.019c-0.878,0.521-1.851,0.9-2.886,1.104 C18.823,3.053,17.642,2.5,16.335,2.5c-2.51,0-4.544,2.036-4.544,4.544c0,0.356,0.04,0.703,0.117,1.036 C8.132,7.891,4.783,6.082,2.542,3.332C2.151,4.003,1.927,4.784,1.927,5.617c0,1.577,0.803,2.967,2.021,3.782 C3.203,9.375,2.503,9.171,1.891,8.831C1.89,8.85,1.89,8.868,1.89,8.888c0,2.202,1.566,4.038,3.646,4.456 c-0.666,0.181-1.368,0.209-2.053,0.079c0.579,1.804,2.257,3.118,4.245,3.155C5.783,18.102,3.372,18.737,1,18.459 C3.012,19.748,5.399,20.5,7.966,20.5c8.358,0,12.928-6.924,12.928-12.929c0-0.198-0.003-0.393-0.012-0.588 C21.769,6.343,22.835,5.746,23.444,4.834z"/>
+        </g>
+    </svg>
+    </div>
+  </div>
+</a>
+
+<!-- Sharingbutton Google+ -->
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_blank" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <g>
+            <path d="M11.366,12.928c-0.729-0.516-1.393-1.273-1.404-1.505c0-0.425,0.038-0.627,0.988-1.368 c1.229-0.962,1.906-2.228,1.906-3.564c0-1.212-0.37-2.289-1.001-3.044h0.488c0.102,0,0.2-0.033,0.282-0.091l1.364-0.989 c0.169-0.121,0.24-0.338,0.176-0.536C14.102,1.635,13.918,1.5,13.709,1.5H7.608c-0.667,0-1.345,0.118-2.011,0.347 c-2.225,0.766-3.778,2.66-3.778,4.605c0,2.755,2.134,4.845,4.987,4.91c-0.056,0.22-0.084,0.434-0.084,0.645 c0,0.425,0.108,0.827,0.33,1.216c-0.026,0-0.051,0-0.079,0c-2.72,0-5.175,1.334-6.107,3.32C0.623,17.06,0.5,17.582,0.5,18.098 c0,0.501,0.129,0.984,0.382,1.438c0.585,1.046,1.843,1.861,3.544,2.289c0.877,0.223,1.82,0.335,2.8,0.335 c0.88,0,1.718-0.114,2.494-0.338c2.419-0.702,3.981-2.482,3.981-4.538C13.701,15.312,13.068,14.132,11.366,12.928z M3.66,17.443 c0-1.435,1.823-2.693,3.899-2.693h0.057c0.451,0.005,0.892,0.072,1.309,0.2c0.142,0.098,0.28,0.192,0.412,0.282 c0.962,0.656,1.597,1.088,1.774,1.783c0.041,0.175,0.063,0.35,0.063,0.519c0,1.787-1.333,2.693-3.961,2.693 C5.221,20.225,3.66,19.002,3.66,17.443z M5.551,3.89c0.324-0.371,0.75-0.566,1.227-0.566l0.055,0 c1.349,0.041,2.639,1.543,2.876,3.349c0.133,1.013-0.092,1.964-0.601,2.544C8.782,9.589,8.363,9.783,7.866,9.783H7.865H7.844 c-1.321-0.04-2.639-1.6-2.875-3.405C4.836,5.37,5.049,4.462,5.551,3.89z"/>
+            <polygon points="23.5,9.5 20.5,9.5 20.5,6.5 18.5,6.5 18.5,9.5 15.5,9.5 15.5,11.5 18.5,11.5 18.5,14.5 20.5,14.5 20.5,11.5  23.5,11.5   "/>
+        </g>
+    </svg>
+    </div>
+  </div>
+</a>
+
+<!-- Sharingbutton E-Mail -->
+<a class="resp-sharing-button__link" href="mailto:?subject=Linear Least-Squares Algorithms for Temporal Difference Learning&amp;body=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_self" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <path d="M22,4H2C0.897,4,0,4.897,0,6v12c0,1.103,0.897,2,2,2h20c1.103,0,2-0.897,2-2V6C24,4.897,23.103,4,22,4z M7.248,14.434 l-3.5,2C3.67,16.479,3.584,16.5,3.5,16.5c-0.174,0-0.342-0.09-0.435-0.252c-0.137-0.239-0.054-0.545,0.186-0.682l3.5-2 c0.24-0.137,0.545-0.054,0.682,0.186C7.571,13.992,7.488,14.297,7.248,14.434z M12,14.5c-0.094,0-0.189-0.026-0.271-0.08l-8.5-5.5 C2.997,8.77,2.93,8.46,3.081,8.229c0.15-0.23,0.459-0.298,0.691-0.147L12,13.405l8.229-5.324c0.232-0.15,0.542-0.084,0.691,0.147 c0.15,0.232,0.083,0.542-0.148,0.691l-8.5,5.5C12.189,14.474,12.095,14.5,12,14.5z M20.934,16.248 C20.842,16.41,20.673,16.5,20.5,16.5c-0.084,0-0.169-0.021-0.248-0.065l-3.5-2c-0.24-0.137-0.323-0.442-0.186-0.682 s0.443-0.322,0.682-0.186l3.5,2C20.988,15.703,21.071,16.009,20.934,16.248z"/>
+    </svg>
+    </div>
+  </div>
+</a>
+
+<!-- Sharingbutton LinkedIn -->
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_blank" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <g>
+            <path d="M6.527,21.5h-5v-13h5V21.5z M4.018,6.5H3.988C2.478,6.5,1.5,5.318,1.5,4.019c0-1.329,1.008-2.412,2.547-2.412 c1.541,0,2.488,1.118,2.519,2.447C6.565,5.354,5.588,6.5,4.018,6.5z M15.527,12.5c-1.105,0-2,0.896-2,2v7h-5c0,0,0.059-12,0-13h5 v1.485c0,0,1.548-1.443,3.938-1.443c2.962,0,5.062,2.144,5.062,6.304V21.5h-5v-7C17.527,13.396,16.632,12.5,15.527,12.5z"/>
+        </g>
+    </svg>
+    </div>
+  </div>
+</a>
+
+<!-- Sharingbutton Reddit -->
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http://localhost:4000/paper-summaries/reinforcement-learning-theory/2016/12/30/linear-least-squares-td.html" target="_blank" aria-label="">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+        <path d="M24,11.5c0-1.654-1.346-3-3-3c-0.964,0-1.863,0.476-2.422,1.241c-1.639-1.006-3.747-1.64-6.064-1.723 c0.064-1.11,0.4-3.049,1.508-3.686c0.72-0.414,1.733-0.249,3.01,0.478C17.189,6.317,18.452,7.5,20,7.5c1.654,0,3-1.346,3-3 s-1.346-3-3-3c-1.382,0-2.536,0.944-2.883,2.217C15.688,3,14.479,2.915,13.521,3.466c-1.642,0.945-1.951,3.477-2.008,4.551 C9.186,8.096,7.067,8.731,5.422,9.741C4.863,8.976,3.964,8.5,3,8.5c-1.654,0-3,1.346-3,3c0,1.319,0.836,2.443,2.047,2.844 C2.019,14.56,2,14.778,2,15c0,3.86,4.486,7,10,7s10-3.14,10-7c0-0.222-0.019-0.441-0.048-0.658C23.148,13.938,24,12.795,24,11.5z  M2.286,13.366C1.522,13.077,1,12.351,1,11.5c0-1.103,0.897-2,2-2c0.635,0,1.217,0.318,1.59,0.816 C3.488,11.17,2.683,12.211,2.286,13.366z M6,13.5c0-1.103,0.897-2,2-2s2,0.897,2,2c0,1.103-0.897,2-2,2S6,14.603,6,13.5z  M15.787,18.314c-1.063,0.612-2.407,0.949-3.787,0.949c-1.387,0-2.737-0.34-3.803-0.958c-0.239-0.139-0.321-0.444-0.182-0.683 c0.139-0.24,0.444-0.322,0.683-0.182c1.828,1.059,4.758,1.062,6.59,0.008c0.239-0.138,0.545-0.055,0.683,0.184 C16.108,17.871,16.026,18.177,15.787,18.314z M16,15.5c-1.103,0-2-0.897-2-2c0-1.103,0.897-2,2-2s2,0.897,2,2 C18,14.603,17.103,15.5,16,15.5z M21.713,13.365c-0.397-1.155-1.201-2.195-2.303-3.048C19.784,9.818,20.366,9.5,21,9.5 c1.103,0,2,0.897,2,2C23,12.335,22.468,13.073,21.713,13.365z"/>
+    </svg>
+    </div>
+  </div>
+</a>
+
+
+    <div class="PageNavigation">
+      
+      
+      
+         <a class="next" href="/paper-summaries/natural-language-processing/2017/01/26/neural-probabilistic-language.html"> &laquo; A Neural Probabilistic Language Model</a>
+      
+      
+         <a class="prev" href="/paper-summaries/deep-rl/2016/12/20/learning-to-navigate-in-complex-envs.html">Learning To Navigate in Complex Environments &raquo;</a>
+      
+    </div>
+
+   </center>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<hr />
+
+<p><a href="http://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1016&amp;context=cs_faculty_pubs">Bradtke, Barto, 1996</a></p>
+
+<h2 id="summary">Summary</h2>
+
+<h3 id="a-brief-description-of-tdlambda">A Brief Description of TD($\lambda$)</h3>
+
+<p>In TD($\lambda$), a parameterized linear function approximator is used to represent the value function. 
+The parameter update for vector $\theta_{t}$ is:</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+
+\theta_{t+1} = \theta_{t} + \alpha_{\eta(x_{t})} \big [ R_{t} + \gamma V_{t}(x_{t+1} - V_{t} \big ] \sum_{k=1}^{t} \lambda^{t-k} \nabla_{\theta_{t}} V_{t}(x_k)
+
+\end{equation}</script>
+
+<p>$\alpha_{\eta(x_{t})}$ is the step-size parameter, and $\eta(x_{t})$ is the number of transitions from state $x_{t}$ up to time step $t$.<br />
+It is important that $V_{t}$ be linear in the parameter vector $\theta_{t}$- and if $\lambda \neq 0$- $\nabla_{\theta_{t}} V_{t}(x_k)$ does not depend on $\theta_{t}$. This allows for an efficient, recursive algorithm to be derived to compute the sum at the end of Equation (1).</p>
+
+<div>
+	<div class="image-wrapper">
+	
+	<img src="/img/td-lambda.png" alt="" width="" height="" />
+	
+	</div>
+	<div>
+	
+	<p class="image-caption">Episodic TD-Lambda algorithm. The parameter vector is updated only at the end of the episode</p>
+	
+	</div>
+</div>
+
+<p>Daya and Sejnowski (1994) proved parameter convergence with probability 1 under these conditions for TD($\lambda$) applied to absorbing Markov chains in a episodic-setting (i.e., offline).</p>
+
+<p>Bradtke (1994) introduced a normalized version of TD(0) (called NTD(0)) to solve instabilities in the learning algorithm caused by the size of the input vectors $\phi_{x}$</p>
+
+<h3 id="least-squares-temporal-difference-learning">Least-Squares Temporal-Difference Learning</h3>
+
+<p>The general problem consists of a system with inputs $\hat \omega_{t} = \omega_{t} + \zeta_{t}$ where $\zeta_{t}$ is the input observation noise at time $t$. For a linear function approximator $\Psi$, we have</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+
+\psi_{t} &= \Psi(\hat \omega_{t} - \zeta_{t}) + \eta_{t} \nonumber \\
+         &= \hat \omega_{t}^{\intercal} \theta^{*} - \zeta_{t}^{\intercal} \theta^{*} + \eta_{t}
+
+\end{align} %]]></script>
+
+<p>The quadratic objective function to minimize over all parameter vectors is</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+
+J_{t} = \frac{1}{t} \sum_{k=1}^{t} [ \psi_{k} - \omega_{k}^{\intercal} \theta_{t} ]^{2}.
+
+\end{equation}</script>
+
+<p>and the $t^{th}$ estimate of $\theta^{*}$ is</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\hat \theta^{*}_{t} = \argmin_{\theta_{t}} J_{t} 
+\end{equation}</script>
+
+<p>We introduce an <em>instrumental variable</em> $\rho_{t}$, which is a vector that is correlated with the true input vectors, $\omega_{t}$, but that is uncorrelated with the observation noise, $\zeta_{t}$. Solving the linear-least squares equation by taking the gradient of the quadratic objective function and setting it to 0 results in this parameter estimate:</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+
+\hat \theta^{*}_{t} = \bigg [ \frac{1}{t} \sum_{k=1}^{t} \rho_{k}\hat\omega_{k}^{\intercal} \bigg ]^{-1} \bigg [ \frac{1}{t} \sum_{k=1}^{t} \rho_{k} \psi_{k} \bigg].
+
+\end{equation}</script>
+
+<p>The correlation matrix $Cor(\rho, \omega)$ must be nonsingular and finite, the correlation matrix $Cor(\rho, \zeta)$ = 0, and the output observation noise $\eta_{t}$ must be uncorrelated with the instrumental variable for $\theta_{t}$ to converge with probability 1 to $\theta^{*}$</p>
+
+<p>We arrive at the LSTD algorithm based on the following assumptions (Lemma 4 in the paper)</p>
+
+<ol>
+  <li>If x and y are states s.t. $P(x,y) \gt 0$</li>
+  <li>$\zeta_{xy} = \gamma \sum_{z \in X} P(x,z) \phi_{z} - \gamma \phi_{y}$</li>
+  <li>$\eta_{xy} = R(x,y) - \bar r_{x}$</li>
+  <li>$\rho_{x} = \phi_{x}$</li>
+</ol>
+
+<p>Then $Cor(\rho, \eta) = 0$ and $Cor(\rho, \zeta) = 0$.
+In other words, we can use $\phi_{x}$ as the instrumental variable to re-write Equation (5) as:</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+
+\hat \theta^{*}_{t} = \big[ \frac{1}{t} \sum_{k=1}^{t} \phi_{k} (\phi_{k} - \gamma \phi_{k+1})^{\intercal}\big]^{-1} \big [ \frac{1}{t} \sum_{k=1}^{t} \phi_{k} r_{k} \big]
+
+\end{equation}</script>
+
+<p>where $\hat\omega_{k} = \phi_{k} - \gamma \phi_{k+1}$ and $\psi_{k} = r_{k}$.</p>
+
+<p>Under some non-too-restrictive conditions, the authors provided proofs of convergence of LSTD on absorbing and ergodic Markov Chains.</p>
+
+<p>Mainly, for absorbing MCs, we need</p>
+
+<ol>
+  <li>The starting probabilities are such that there are no inaccessible states</li>
+  <li>$R(x,y) = 0$ whenever $x,y \in T$, the set of absorbing states</li>
+  <li>The set of feature vectors {$\phi_{x} | x \in X$} representing non-absorbing states must be linearly independent</li>
+  <li>$\phi_{x} = 0$ for all $x \in T$</li>
+  <li>Each $\phi_{x}$ is of dimension $N = |X|$</li>
+  <li>$0 \leq \gamma \lt 1$</li>
+</ol>
+
+<p>Then $\theta^{*}$ is finite and the LSTD algorithm converges to it with probability 1 as the number of trials (and state transitions) approaches infinity.</p>
+
+<p>There are even less restrictions for convergence on ergodic MCs. The proof of convergence for absorbing MCs is straight-forward.</p>
+
+<h3 id="convergence-of-lstd-on-absorving-markov-chains">Convergence of LSTD on absorving Markov Chains</h3>
+
+<p>As $t$ grows, the sampled transitions approaches the true transition probability distribution $P$. We also have that each state is visited with probability $\pi_{x}$ (both with probability 1).</p>
+
+<div class="proof">
+
+$$
+\begin{align}
+
+\theta_{LSTD} &amp;= \lim_{t\to\infty}\theta_{t} \nonumber \\
+
+&amp;= \lim_{t\to\infty} \big[ \frac{1}{t} \sum_{k=1}^{t} \phi_{k} (\phi_{k} - \gamma \phi_{k+1})^{\intercal}\big]^{-1} \big [ \frac{1}{t} \sum_{k=1}^{t} \phi_{k} r_{k} \big] \nonumber \\
+
+&amp;= \bigg[ \lim_{t\to\infty} \frac{1}{t} \sum_{k=1}^{t} \phi_{k} (\phi_{k} - \gamma \phi_{k+1})^{\intercal} \bigg]^{-1} \bigg [ \lim_{t\to\infty} \frac{1}{t} \sum_{k=1}^{t} \phi_{k} r_{k} \bigg] \nonumber \\
+
+&amp;= \bigg[ \sum_{x} \pi_{x} \sum_{y} P(x,y) \phi_{x} (\phi_{x} - \gamma \phi_{y})^{\intercal} \bigg ]^{-1} \bigg [ \sum_{x} \pi_{x} \phi_{x} \sum_{y} P(x,y) R(x,y) \bigg] \nonumber \\
+
+&amp;= \bigg[ \sum_{x} \pi_{x} \sum_{y} P(x,y) \phi_{x} (\phi_{x} - \gamma \phi_{y})^{\intercal} \bigg ]^{-1} \bigg [ \sum_{x} \pi_{x} \bar R(x,y) \phi_{x} \bigg] \nonumber \\
+
+&amp;= \big [ \Phi^{\intercal} \Pi (I - \gamma P) \Phi \big ]^{-1} \big [ \Phi^{\intercal} \Pi \bar R \big ]
+
+\end{align}
+$$
+
+$\Phi$ is a matrix where each row is $\phi_{x}$, and $\Pi$ is the matrix diag($\pi$), $\pi$ being the proportion of time spent in each state in the limit.
+
+We know the inverse of $\big [ \Phi^{\intercal} \Pi (I - \gamma P) \Phi \big ]$ exists since each of $\Phi$, $\Pi$, and $(I - \gamma P)$ are full rank by our assumptions.
+
+Hence,  
+
+$$
+\begin{align}
+
+\bar R_{x} &amp;= V(x) - \gamma \sum_{y \in X} P(x,y) V(y) \nonumber \\ 
+
+&amp;= \phi_{x}^{\intercal}\theta^{*} - \gamma \sum_{y \in X} P(x,y) \phi_{y}^{\intercal}\theta^{*} \nonumber \\
+
+&amp;= (\phi_{x}^{\intercal} - \gamma \sum_{y \in X} P(x,y) \phi_{y}^{\intercal})\theta^{*} \nonumber \\
+
+&amp;= (I - \gamma P) \Phi \theta^{*}
+
+\end{align}
+$$
+
+Substituting this into Equation (7) we have 
+
+$$
+\begin{align}
+
+\theta_{LSTD} &amp;= \big [ \Phi^{\intercal} \Pi (I - \gamma P) \Phi \big ]^{-1} \big [ \Phi^{\intercal} \Pi (I - \gamma P) \Phi \big ] \theta^{*} \nonumber \\
+
+&amp;= \theta^{*}
+
+\end{align}
+$$
+</div>
+
+<p>Thus, $\theta_{LSTD}$ converges to $\theta^{*}$ with probability 1.</p>
+
+<p>The complexity of LSTD is $O(m^{3})$, where $m$ is the state dimension, since it requires a matrix inversion at every step.</p>
+
+<p>The authors present Recursive LSTD, which is an $O(m^{2})$ version of the LSTD algorithm. It amounts to the TD(0) learning rule, except the scalar step-size parameter is replaced by a gain matrix. See Section 5.4 for the details.</p>
+
+<p>Note that when $rank(\Phi) = n \lt m$, TD($\lambda$), NTD($\lambda$), and RLSTD converge to some $\theta$ depending on the order that states are visited in. LSTD does not converge since the matrix inversion can no longer be computed.</p>
+
+<h2 id="takeaways">Takeaways</h2>
+
+<p>RLSTD (and LSTD algorithms in general) extract more information from each episode. As shown in this paper, even on simple randomly generated Markov Chains, RLSTD produces parameter estimates with significantly lower variance and faster convergence rates than TD($\lambda$) and NTD($\lambda$). Also, the LSTD algorithms don’t have tricky hyperparameters to tune, whereas the TD($\lambda$) algorithms do.</p>
+
+<p>In the experiments in this paper, RLSTD was not sensitive to the initial guess of $\theta_{t}$. It is unclear whether this is always true. On the other hand, TD($\lambda$) is sensitive to the initial guess (obviously, bad guesses = bad performance).</p>
+
+<p>Standard LSTD algorithms require linear function approximators and fixed size feature vectors. These are usually not realistic for high-dimensional spaces and value functions on those spaces. The value function may be nonlinear, and obtaining a feature vector may be difficult or impossible. There is a major need for TD algorithms with nonlinear function approximators and automatic feature extraction that explicitly attempt to keep the variance of the TD-error small.</p>
+
+<p>Some future reading I need to do is on kernel-based LSTD algorithms, that replace the fixed-size feature vector with a kernel.</p>
+
+  </div>
+
+  <!--
+  <div class="PageNavigation">
+     
+       <a class="prev" href="/paper-summaries/deep-rl/2016/12/20/learning-to-navigate-in-complex-envs.html">&laquo; Learning To Navigate in Complex Environments</a>
+     
+     
+       <a class="next" href="/lecture-notes/2017/01/04/1.html">PLP: Lecture 1 &raquo;</a>
+     
+  </div>
+  -->
+  
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading small-site-title">Smruti Amarjyoti</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list footer-content">
+          <li>Powered By <a href="http://github.com/hemangsk/Gravity">Gravity</a></li>
+          <li>Made with <i class="fa fa-heart"></i> on <a href="http://jekyllrb.com"><span style="color:black">{ { Jekyll } }</a></span></li>
+
+
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2 footer-content">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/Amarjyotismruti"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">Amarjyotismruti</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://linkedin.com/in/samarjyoti"><span class="icon icon--twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span><span class="username">samarjyoti</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3 site-description">
+        <p>A reflection of my thoughts and experiments on the fascinating realm of Robotics and Artificial Intelligence.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
