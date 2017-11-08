@@ -11,13 +11,18 @@ front: true
     img="/img/me-4.jpg"
 %}
 
-<div style="text-align: justify"> 
-I am a Project Researcher advised by [Dr. Chris Atkeson](http://www.cs.cmu.edu/~cga/) in Robotics Institute (RI), Carnegie Mellon University where I work on **stereo based tactile sensors for robot skin** and **model-based reinforcement learning algorithms**. Whilst my masters in RI (2015-17), I focused my investigations on robotic behavior learning and various ways to combine learning and robotics. My areas of research fall under the broad categories of **Robot Learning**, **Reinforcement Learning**, **Behavior Learning**, **Machine Learning**, **Computer Vision** and **Robotic Manipulation**.
+<div style="text-align: justify">
+<font size="+2">
+I am a Project Researcher advised by <a href="http://www.cs.cmu.edu/~cga/">Dr. Chris Atkeson</a> in Robotics Institute (RI), Carnegie Mellon University where I work on <b>stereo based tactile sensors for robot skin</b> and <b>model-based reinforcement learning algorithms</b>. Whilst my masters in RI (2015-17), I focused my investigations on robotic behavior learning and various ways to combine learning and robotics. My areas of research fall under the broad categories of <b>Robot Learning, Reinforcement Learning, Behavior Learning, Machine Learning, Computer Vision and Robotic Manipulation.</b> <br />
+I am inspired by the intricacies of nature and life forms and engrossed by the idea of reverse engineering their behaviors and intelligence. By emplyoing current state of the art in dynamics modelling, decision making learning and optimization, my goal is to replicate the complex behaviors exhibited by anomals and humans around us.
+
+</font>
 </div>
 
 
-
- 
+  
+<br />
+<br />
 
 ## Papers
 
@@ -31,16 +36,18 @@ I am a Project Researcher advised by [Dr. Chris Atkeson](http://www.cs.cmu.edu/~
 
 ## Thesis
 
-* **A Demonstration of Fusing DSRC and Radar for Optimizing Intersection Performance**
-    * Patrick Emami, Mahmoud Pourmehrab, Lily Elefteriadou, Sanjay Ranka, Carl Crane. Automated Vehicles Symposium (AVS), 2017 [[Abstract](pdfs/AUVSI 2017 Abstract.pdf)]
+* **Learning based hand eye co-ordination for robotic manipulation and grasping**
+    * S Amarjyoti, Plymouth University, U.K, MS, 2017 [[PDF](pdfs/AUVSI 2017 Abstract.pdf)] advised by [Dr. Guido Bugmann](https://www.plymouth.ac.uk/staff/guido-bugmann)
 
+* **A hybrid visual servoing approach to robotic manipulation in Baxter robot**
+    * S Amarjyoti, VIT University, India, BS, 2015 [[PDF](pdfs/AUVSI 2017 Abstract.pdf)] advised by [Dr. Chenguang Yang](http://www.swansea.ac.uk/staff/engineering/chenguang.yang/#publications=is-expanded&teaching=is-expanded)
 
 <br>
 
 {%
     include image.html
     img="/img/me.jpg"
-    caption="As a researcher, either you won’t understand something and you will feel stupid and like a worm, or you will understand something and think it’s too trivial and hence still feel like a worm - Simon Peyton Jones"
+    caption="I think therefore I am- Rene Descartes"
 %}
 
 Contact me at: samarjyo at andrew dot cmu dot edu
