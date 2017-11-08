@@ -1,4 +1,4 @@
-	---
+---
 layout: page
 title: About Me
 front: true
@@ -8,9 +8,10 @@ front: true
 
 {%
     include profile-pic.html
-    img="/img/me-3.jpg"
+    img="/img/me-4.jpg"
 %}
-<div style="text-align: center"> 
+
+<div style="text-align: justify"> 
 I am a Project Researcher advised by [Dr. Chris Atkeson](http://www.cs.cmu.edu/~cga/) in Robotics Institute (RI), Carnegie Mellon University where I work on **stereo based tactile sensors for robot skin** and **model-based reinforcement learning algorithms**. Whilst my masters in RI (2015-17), I focused my investigations on robotic behavior learning and various ways to combine learning and robotics. My areas of research fall under the broad categories of **Robot Learning**, **Reinforcement Learning**, **Behavior Learning**, **Machine Learning**, **Computer Vision** and **Robotic Manipulation**.
 </div>
 
