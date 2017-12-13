@@ -13,3 +13,5 @@ markdown: kramdown
 # Redirection
 gems:
   - jekyll-redirect-from
+
+exclude: [blog.md ,cs-dojo.md, uf-ml.md, paper-summaries.md]

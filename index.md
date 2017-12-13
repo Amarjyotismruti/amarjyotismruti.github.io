@@ -14,7 +14,7 @@ front: true
 <div style="text-align: justify">
 <font size="+2">
 I am a Project Researcher advised by <a href="http://www.cs.cmu.edu/~cga/">Dr. Chris Atkeson</a> in Robotics Institute (RI), Carnegie Mellon University where I work on <b>stereo based tactile sensors for robot skin</b> and <b>model-based reinforcement learning algorithms</b>. Whilst my masters in RI (2015-17), I focused my investigations on robotic behavior learning and various ways to combine learning and robotics. My areas of research fall under the broad categories of <b>Robot Learning, Reinforcement Learning, Behavior Learning, Machine Learning, Computer Vision and Robotic Manipulation.</b> <br />
-I am inspired by the intricacies of nature and life forms and engrossed by the idea of reverse engineering their behaviors and intelligence. By emplyoing current state of the art in dynamics modelling, decision making learning and optimization, my goal is to replicate the complex behaviors exhibited by anomals and humans around us.
+I am inspired by the intricacies of nature and life forms and engrossed by the idea of reverse engineering their behaviors and intelligence. By emplyoing current state of the art in dynamics modelling, decision making learning and optimization, my goal is to replicate the complex behaviors exhibited by animals and humans around us.
 
 </font>
 </div>
@@ -46,7 +46,7 @@ I am inspired by the intricacies of nature and life forms and engrossed by the i
 
 {%
     include image.html
-    img="/img/me.jpg"
+    img=""
     caption="I think therefore I am- Rene Descartes"
 %}
 
