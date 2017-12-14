@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Smruti Amarjyoti (Amar)</title>
+    <title></title>
     <description>A reflection of my thoughts and experiments on the fascinating realm of Robotics and Artificial Intelligence.
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Nov 2017 23:08:37 -0500</pubDate>
-    <lastBuildDate>Tue, 07 Nov 2017 23:08:37 -0500</lastBuildDate>
+    <pubDate>Thu, 14 Dec 2017 03:58:30 -0500</pubDate>
+    <lastBuildDate>Thu, 14 Dec 2017 03:58:30 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -87,19 +87,6 @@ MathJax.Hub.Config({
         <category>paper-summaries</category>
         
         <category>general-ML</category>
-        
-      </item>
-    
-      <item>
-        <title>Fa17 Meeting 1</title>
-        <description>
-</description>
-        <pubDate>Thu, 31 Aug 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/ml-meetings/2017/08/31/fa17-meeting-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/08/31/fa17-meeting-1.html</guid>
-        
-        
-        <category>ml-meetings</category>
         
       </item>
     
@@ -216,58 +203,6 @@ MathJax.Hub.Config({
       </item>
     
       <item>
-        <title>Sum17 Meeting 9</title>
-        <description>
-</description>
-        <pubDate>Thu, 03 Aug 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/ml-meetings/2017/08/03/sum17-meeting-9.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/08/03/sum17-meeting-9.html</guid>
-        
-        
-        <category>ml-meetings</category>
-        
-      </item>
-    
-      <item>
-        <title>Sum17 Meeting 8</title>
-        <description>
-</description>
-        <pubDate>Thu, 06 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/ml-meetings/2017/07/06/sum17-meeting-8.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/07/06/sum17-meeting-8.html</guid>
-        
-        
-        <category>ml-meetings</category>
-        
-      </item>
-    
-      <item>
-        <title>Sum17 Meeting 7</title>
-        <description>
-</description>
-        <pubDate>Thu, 29 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/ml-meetings/2017/06/29/sum17-meeting-7.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/06/29/sum17-meeting-7.html</guid>
-        
-        
-        <category>ml-meetings</category>
-        
-      </item>
-    
-      <item>
-        <title>Sum17 Meeting 6</title>
-        <description>
-</description>
-        <pubDate>Thu, 22 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/ml-meetings/2017/06/22/sum17-meeting-6.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ml-meetings/2017/06/22/sum17-meeting-6.html</guid>
-        
-        
-        <category>ml-meetings</category>
-        
-      </item>
-    
-      <item>
         <title>The Markov Chain Monte Carlo Revolution</title>
         <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
 MathJax.Hub.Config({
@@ -312,6 +247,285 @@ MathJax.Hub.Config({
         <pubDate>Wed, 21 Jun 2017 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/paper-summaries/general-ml/2017/06/21/mcmc-rev.html</link>
         <guid isPermaLink="true">http://localhost:4000/paper-summaries/general-ml/2017/06/21/mcmc-rev.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>general-ML</category>
+        
+      </item>
+    
+      <item>
+        <title>Recurrent Environment Simulators</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1704.02254&quot;&gt;Chiappa, et. al., 2017&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;This paper extends the results on action-conditional video prediction from &lt;a href=&quot;https://arxiv.org/abs/1507.08750&quot;&gt;Oh, et. al., 2015&lt;/a&gt;. The motivation behind this line of research is to investigate whether training RL agents to learn how their actions affect the environment reduces the amount of time they spend in exploration. The authors outline the following main challenges:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The properties of generalization and sensitivity to model structure of these methods are poorly understood&lt;/li&gt;
+  &lt;li&gt;Accurate prediction for long time periods into the future is hard&lt;/li&gt;
+  &lt;li&gt;Models that predict the high-dim image directly each time an action is taken are inefficient&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The general approach is to use a Conv-RNN to take an observation from the environment and produce a high-dim state representation. This high-dim state representation can be combined with the action taken by the agent to predict how the environment will change. In other words, the goal is to learn a parametric model that approximates the state-action transition.&lt;/p&gt;
+
+&lt;p&gt;One of the main contributions of this work is fusing the action with the hidden state representation when predicting the next hidden state representation in time. In previous work, the action was used instead to directly predict the next image. Why? Authors suggest it could “enable the model to incorporate action information more effectively”.&lt;/p&gt;
+
+&lt;p&gt;Using observations directly from the environment to predict the next hidden state representation forces the agent to make predictions only when the next frame is available, i.e., 1-step prediction. Rolling forward the agent’s own predictions in the future allows it to predict many time steps ahead in a more efficient manner.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prediction-dependent transitions&lt;/strong&gt; are ones of the form &lt;script type=&quot;math/tex&quot;&gt;s_t = f(s_{t-1}, a_{t-1}, C(\mathbb{I}(\hat x_{t-1}, x_{t-1})))&lt;/script&gt; where $s_t$ is the hidden state representation.&lt;/p&gt;
+
+&lt;p&gt;There’s a trade-off between short- and long-term accuracy and prediction- vs observation-dependent transitions. When prediction-dependent transitions are mostly used, the agent learns better global dynamics of the game and can do better with long-term accuracy. When observation-dependent transitions are mixed with prediction-dependent, the agent pays more attention to details that provide it with better short-term accuracy.&lt;/p&gt;
+
+&lt;p&gt;They evaluated their model on Breakout, Freeway, and Pong by replacing the real game with the learned environment simulator. A human would “play” the game, and the learned simulator would return the next frame given the action input by the human.&lt;/p&gt;
+
+&lt;h2 id=&quot;related-works&quot;&gt;Related works&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://papers.nips.cc/paper/5859-action-conditional-video-prediction-using-deep-networks-in-atari-games&quot;&gt;Action-conditional Video Prediction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1611.05397.pdf&quot;&gt;UNREAL&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.acolyer.org/2017/05/12/learning-to-act-by-predicting-the-future/&quot;&gt;Learning to Act By Predicting the Future&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Wed, 31 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/deep-rl/2017/05/31/recurrent-environment-simulators.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/deep-rl/2017/05/31/recurrent-environment-simulators.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>deep-RL</category>
+        
+      </item>
+    
+      <item>
+        <title>Interaction Networks for Learning about Objects, Relations, and Physics</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1612.00222&quot;&gt;Battaglia, et. al., 2016&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;This ambitious paper proposes a deep learning framework for modeling the physical interactions between objects in an environment. The authors present Interaction Networks (IN), which explicitly separate the processes of learning object dynamics and relations between objects.&lt;/p&gt;
+
+&lt;p&gt;IN is designed to work on graphs where objects are nodes and edges are relations between objects. This is to make it scalable to different environments.&lt;/p&gt;
+
+&lt;p&gt;The architecture is simple; two MLPs learn representations over object dynamics and relations between objects, respectively. The input to the system is the state decomposed into the objects and their physical relations (gravitational attraciton, collisions, springs), as well as external effects (gravity). Object states can be further decomposed into position and velocity. In general, the output is the velocity of the objects at the subsequent time step.&lt;/p&gt;
+
+&lt;p&gt;The system is evaluated on interesting physical reasoning tasks, such as n-bodies interacting, bouncing balls colliding, and string/mass systems. IN showed significantly lower MSE when predicting future states of objects in the scenes compared to simple baselines.&lt;/p&gt;
+
+&lt;p&gt;A custom physics engine was used to generate trajectories for training data. All training objectives and test measures used MSE between the model’s predictions and the ground truth target.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/deep-learning/2017/05/14/interaction-networks-for-learning-about-objects-relations-physics.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/deep-learning/2017/05/14/interaction-networks-for-learning-about-objects-relations-physics.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>deep-learning</category>
+        
+      </item>
+    
+      <item>
+        <title>DESIRE: Distant Future Prediction in Dynamic Scenes with Interacting Agents</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1704.04394v1&quot;&gt;Lee, et. al., 2016&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;This paper presents a framework for predicting how a scene containing multiple interacting agents will play out by leveraging a number of powerful techniques. DESIRE stands for Deep Stochastic IOC RNN Encoder-decoder framework.&lt;/p&gt;
+
+&lt;p&gt;The following are the biggest obstacles for successfully predicting future actions taken by interacting agents given a visual snapshot of the present:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The space of future states for each agent in a scene is hard to optimize over; even when taking the context of the scene into account, there could be many plausible outcomes that seem equally likely&lt;/li&gt;
+  &lt;li&gt;In turn, this makes rolling out and scoring potential future trajectories computationally expensive, since it requires sampling a large number of trajectories. This isn’t relevant for offline processing, but for real-time robotics applications, this is important&lt;/li&gt;
+  &lt;li&gt;The multi-agent problem; how to infer interactions between multiple actors in a scene?&lt;/li&gt;
+  &lt;li&gt;Taking into account long-term prediction rewards, rather than just one-step prediction&lt;/li&gt;
+  &lt;li&gt;How to define a multi-objective loss function that doesn’t commit errors such as averaging over all future possibilities&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;DESIRE attempts to address these challenges as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Diverse sample generation using a conditional Variational Autoencoder. This allows for differentiable efficient sampling of plausible futures&lt;/li&gt;
+  &lt;li&gt;RNN encoder-decoder neural architecture that allows for mapping trajectories represented by world coordinates in $\mathbb{R}^2$ or $\mathbb{R}^3$ to a high-dimensional distributed representation that can be efficiently combined with the Conditoinal VAE&lt;/li&gt;
+  &lt;li&gt;An Inverse Optimal-Control (IOC) based Ranking and Refinement module that determines the most likely hypotheses, while incorporating scene context and interactions. The IOC module estimates a regression vector to refine each prediction sample.&lt;/li&gt;
+  &lt;li&gt;A convolutional neural network is used to carry out scene context fusion. This enables encoding features such as object velocities into the hypothesis scoring component.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The model is trained end-to-end with a total loss consisting of multiple auxiliary losses (e.g., reconstruction error from the output trajectory of the decoder during training). The authors evaluate its performance on the KITTI and Stanford Drone tracking datasets. They show the performance with the metric “error in meters” for future time steps at intervals of 1, 2, 3, and 4 seconds.&lt;/p&gt;
+
+&lt;p&gt;Overall, the proposed model seems quite complex, with many sub-components. However, the motivation behind each component is reasonable and the model is shown to perform well on the datasets. The separation of the system into a Sample Generation Module and the Ranking and Refinement Module is reminiscent of the actor-critic architecture in RL. However, the Ranking and Refinement Module isn’t handed a reward function like the critic usually is; rather, it uses unsupervised learning losses to learn to score/refine the “actor”, or Sample Generation Module.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/deep-learning/2017/05/14/DESIRE.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/deep-learning/2017/05/14/DESIRE.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>deep-learning</category>
+        
+      </item>
+    
+      <item>
+        <title>Fast, Exact, and Multi-Scale Inference for Semantic Image Segmentation with Deep Gaussian CRFs</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1603.08358&quot;&gt;Chandra, Kokkinos, 2016&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;semantic-image-segmentation&quot;&gt;Semantic Image Segmentation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.tum.de/download/attachments/23561833/sms.png?version=1&amp;amp;modificationDate=1483619907233&amp;amp;api=v2&quot;&gt;Image Example&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Put simply, the task is to cluster pixels in an image together and to assign all pixels in a cluster a meaningful label. Labels are generally “high-level” concepts, such as “horse”, “dog”, “boat”, etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://host.robots.ox.ac.uk/pascal/VOC/voc2012/&quot;&gt;Here is the VOC PASCAL 2012&lt;/a&gt; dataset used in this paper.&lt;/p&gt;
+
+&lt;h2 id=&quot;discussion-qs&quot;&gt;Discussion Q’s&lt;/h2&gt;
+
+&lt;h2 id=&quot;why-g-crfs&quot;&gt;Why G-CRFs?&lt;/h2&gt;
+
+&lt;p&gt;Joint distributions are hard, so exploit factorizable (exponential-family) probability distributions and conditional independence. This results in a graph-like structure.&lt;/p&gt;
+
+&lt;p&gt;If the label assigned to each pixel is a random variable, then an conditional random field suggests that there’s a dependence between a pixel’s label and the label’s of other nearby pixels. This seems intuitive.&lt;/p&gt;
+
+&lt;p&gt;Author’s argue that continuous Gaussian outputs are unimodal conditioned on the data, so given an image, one solution dominates the posterior. The log-likelihood is a quadratic, which allows the approximate inference task to be cast a quadratic optimization in an energy-minimization setting.&lt;/p&gt;
+
+&lt;h2 id=&quot;deep-g-crf-architecture&quot;&gt;Deep G-CRF architecture&lt;/h2&gt;
+
+&lt;p&gt;The basic idea is to set the outputs of a convolutional neural network to be the energy of a segmentation hypothesis, in the form of 
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+E(x) = \frac{1}{2} x^{\intercal}(A + \lambda I) x - Bx
+\end{equation}&lt;/script&gt; 
+. The network predicts what the $A$ (pairwise) and $B$ (unary) terms in the energy function are for an image. $\lambda$ is set manually to enforce positive-definiteness. Then a Quadratic Optimization + softmax module gives the final per-class scores for each pixel in the image (See Fig. 1) by solving for $x$. Originally, $A$ is a $(P \times L) \times (P \times L)$ matrix, where $L$ is the number of class labels and $P$ is number of pixels.&lt;/p&gt;
+
+&lt;h2 id=&quot;shared-pair-wise-terms&quot;&gt;Shared pair-wise terms&lt;/h2&gt;
+
+&lt;p&gt;$A$ is no longer dependent on the number of class labels; only care about pixel interactions independent on what the label is. Now, the inference equation $(A + \lambda I) x = B$ is reduced to a system of $L + 1$ equations for $A$ of dim $P \times P$.&lt;/p&gt;
+
+&lt;h2 id=&quot;conjugate-gradient-method&quot;&gt;Conjugate Gradient method&lt;/h2&gt;
+
+&lt;p&gt;Need to solve $x = A^{-1}b$. 
+The $A$ matrix is very sparse, since it only deals with 4, 8, or 12-connected neighborhoods. CG is the current recommended approach for solving $Ax = b$ when $A$ is sparse &lt;a href=&quot;https://math.stackexchange.com/questions/655306/conjugate-gradient-method-and-sparse-systems&quot;&gt;why?&lt;/a&gt; When $A$ is dense, it is recommended to factorize A and then use backsubstitution. &lt;a href=&quot;https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf&quot;&gt;see here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;experiments&quot;&gt;Experiments&lt;/h2&gt;
+
+&lt;p&gt;Try out the above + fusing information across 3 different resolutions.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;metric - Intersection over Union&lt;/li&gt;
+  &lt;li&gt;baselines - Multiresolution DeepLab-LargeFOV, CRF-RNN&lt;/li&gt;
+  &lt;li&gt;QO network - Baseline extended to have a binary and unary stream. QO module can be shared by all resolutions, or replicated three times for each scale&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;75.5% mean IOU on VOC PASCAL 2012 for this approach. Without more details and tests of significance, hard to say whether this method is really more effective than prev SOTA. It seems to do about ~1-2% IOU better than the baselines. Also seems to be much faster.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 04 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/computer-vision/2017/05/04/semantic-image-seg-with-deep-g-crfs.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/computer-vision/2017/05/04/semantic-image-seg-with-deep-g-crfs.html</guid>
+        
+        
+        <category>paper-summaries</category>
+        
+        <category>computer-vision</category>
+        
+      </item>
+    
+      <item>
+        <title>Topology and Data</title>
+        <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; } },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ams.org/images/carlsson-notes.pdf&quot;&gt;Gunnar Carlsson, 2009&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Homology&lt;/strong&gt; is a general way of associating a sequence of algebraic objects such as abelian groups or modules to other mathematical objects such as topological spaces. Homology itself was developed as a way to analyse and classify manifolds according to their cycles – closed loops (or more generally submanifolds) that can be drawn on a given n dimensional manifold but not continuously deformed into each other &lt;a href=&quot;https://en.wikipedia.org/wiki/Homology_(mathematics)#Construction_of_homology_groups&quot;&gt;1&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connectivity information&lt;/strong&gt; is information concerning the loops and higher dimensional analogues in a space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Functoriality&lt;/strong&gt; is the notion that invariants should be related not just to objects being studied, but also to the maps between those objects.&lt;/p&gt;
+
+&lt;p&gt;Two mathematical objects are said to be &lt;strong&gt;homotopic&lt;/strong&gt; if one can be continuously deformed into the other.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;k-th Betti number&lt;/strong&gt; corresponds to an informal notion of the number of independent k-dimensional surfaces in a k-dimensional vector space.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;simplicial complex structure&lt;/strong&gt; on a space is an expression of the space as a union of points, intervals, triangles, and higher dimensional analogues.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;The homology of simplicial complexes is algorithmically computable; hence, it is desirable to construct a simplicial complex which computes the homology of an underlying space X. One way to do this is to produce a homotopy equivalence from X to the simplicial complex.&lt;/p&gt;
+
+&lt;p&gt;Consider the case where there is a large amount of potentially noisy high-dimensional data. A question that can be asked is whether it is possible to infer the Betti numbers of the underlying space from the noisy data. The Cech complex &lt;a href=&quot;https://jeremykun.com/2015/08/06/cech-vietoris-rips-complex/&quot;&gt;2&lt;/a&gt; on a metric space, which is a covering by balls of a fixed radius $\epsilon$, is useful because it can be shown to be homotopy equivalent to the underlying Reimannian manifold. However, the data cannot be assumed to always lie on a manifold. The philosophy of selecting all values of $\epsilon$ at once to compute a summary of homological information is known as &lt;em&gt;persistence&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;interesting-points&quot;&gt;Interesting points&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Topology is exactly that branch of mathematics which deals with qualitative geometric information.”&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 20 Apr 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/paper-summaries/general-ml/2017/04/20/topology-data.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paper-summaries/general-ml/2017/04/20/topology-data.html</guid>
         
         
         <category>paper-summaries</category>
