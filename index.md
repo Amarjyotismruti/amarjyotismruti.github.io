@@ -42,5 +42,3 @@ I am inspired by the intricacies of nature and life forms and engrossed by the i
     * S Amarjyoti, VIT University, India, BS, 2015 [[PDF](pdfs/AUVSI 2017 Abstract.pdf)] advised by [Dr. Chenguang Yang](http://www.swansea.ac.uk/staff/engineering/chenguang.yang/#publications=is-expanded&teaching=is-expanded)
 
 <br>
-
-Contact me at: samarjyo at andrew dot cmu dot edu
