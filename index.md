@@ -4,7 +4,7 @@ title: About Me
 front: true
 ---
 
-<h1>Smruti Amarjyoti (Amar)</h1>
+<h1>About Me</h1>
 
 {%
     include profile-pic.html
@@ -26,11 +26,11 @@ I am inspired by the intricacies of nature and life forms and engrossed by the i
 <h1>Publications</h1>
 
 * **Deep Reinforcement Learning for Robotic Manipulation-The State Of the Art**
-	* S Amarjyoti, 2017 [[PDF]](pdfs/tracking-vehicles-equipped-with-dsrc.pdf)
+	* S Amarjyoti, 2017 [[PDF]](pdfs/3.pdf)
 * **Visual servoing control of baxter robot arms with obstacle avoidance using kinematic redundancy**
-    * C Yang, S Amarjyoti, X Wang, Z Li, H Ma, CY Su. International Conference on Intelligent Robotics and Applications, 568-580 (ICIRA), 2015 [[PDF](pdfs/pomdpy-extensible-framework.pdf)]-Best conference paper finalists.
+    * C Yang, S Amarjyoti, X Wang, Z Li, H Ma, CY Su. International Conference on Intelligent Robotics and Applications, 568-580 (ICIRA), 2015 [[PDF](pdfs/1.pdf)]-*Best conference paper finalists.*
 * **Steering angle estimation for autonomous vehicle navigation using hough and Euclidean transform**
-    * V Umamaheswari, S Amarjyoti, T Bakshi, A Singh,Signal Processing, Informatics, Communication and Energy Systems (SPICES), 2015 [[PDF](pdfs/ICCAS2015.pdf)]
+    * V Umamaheswari, S Amarjyoti, T Bakshi, A Singh,Signal Processing, Informatics, Communication and Energy Systems (SPICES), 2015 [[PDF](pdfs/2.pdf)]
 
 
 <h1>Thesis</h1>
